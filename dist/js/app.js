@@ -2,17 +2,12 @@ import React from 'react';
 import ReactDOM from "react-dom";
 import { HashRouter as Router, Route, Switch } from "react-router-dom";
 
-import About from "./about";
-import Skills from "./skills";
-import Projects from "./projects";
+import Main from './main';
 
 let routes = (
     <Router>
         <Switch>
-            <Route exact path="/" component={About} />
-            <Route path="/About" component={About} />
-            <Route path="/Skills" component={Skills} />
-            <Route path="/Projects" component={Projects} />
+            <Route exact path="/" component={Main} />
         </Switch>
     </Router>
 );
