@@ -12,4 +12,4 @@ let routes = (
     </Router>
 );
 
-ReactDOM.render(routes, document.getElementsByTagName("main")[0]);
+ReactDOM.render(routes, document.getElementsByTagName("body")[0]);

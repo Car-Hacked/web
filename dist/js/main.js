@@ -1,15 +1,15 @@
-import React from 'react'
+import React from 'react';
+import $ from 'jquery';
 
 class Main extends React.Component {
-    render() {
+    async render() {
+        let response = await $.get('http://park-a-lot.herokuapp.com/api/v1/garages');
+        console.log(response);
+
         return (<div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
+            <h1>hello!</h1>
         </div>);
     }
 }
 
-default export Main;
+export default Main;
