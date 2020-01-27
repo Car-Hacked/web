@@ -18,7 +18,7 @@ class Main extends React.Component {
     socket.on('updated', (data, other) => {
       if (data === '5e2cec15c969e7185ab7d04d') {
         $.get(
-          'http://park-a-lot.herokuapp.com/api/v1/garages/5e2cec15c969e7185ab7d04d',
+          'https://park-a-lot.herokuapp.com/api/v1/garages/5e2cec15c969e7185ab7d04d',
           response => {
             this.setState({
               garageName: response.garageName,
@@ -30,7 +30,7 @@ class Main extends React.Component {
       }
     });
     $.get(
-      'http://park-a-lot.herokuapp.com/api/v1/garages/5e2cec15c969e7185ab7d04d',
+      'https://park-a-lot.herokuapp.com/api/v1/garages/5e2cec15c969e7185ab7d04d',
       response => {
         if (response instanceof Error) {
           return;
