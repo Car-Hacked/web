@@ -12,9 +12,10 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'build'),
     filename: 'bundle.js',
-    publicPath: '/build/',
+    publicPath: './',
   },
   devServer: {
+    publicPath: '/build/',
     contentBase: path.resolve(__dirname, 'build'),
     stats: { colors: true },
     port: 3000,
