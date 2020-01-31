@@ -3,19 +3,24 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 
 module.exports = {
-  entry: './src/index.js',
+  entry: [
+    'react-hot-loader/patch',
+    'webpack-dev-server/client?http://localhost:3000',
+    'webpack/hot/only-dev-server',
+    './src/index.js',
+  ],
   output: {
     path: path.resolve(__dirname, 'build'),
-    publicPath: './',
     filename: 'bundle.js',
+    publicPath: '/build/',
   },
   devServer: {
-    contentBase: path.join(__dirname, 'build'),
-    stats: 'errors-only',
-    publicPath: path.resolve(__dirname, 'build'),
+    contentBase: path.resolve(__dirname, 'build'),
+    stats: { colors: true },
     port: 3000,
-    hot: true,
     open: true,
+    inline: true,
+    hotOnly: true,
   },
   devtool: 'inline-source-map',
   module: {
@@ -24,6 +29,7 @@ module.exports = {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: ['babel-loader', 'eslint-loader'],
+        include: path.join(__dirname, 'src'),
       },
       {
         test: /\.scss$/,
@@ -31,20 +37,14 @@ module.exports = {
       },
       {
         test: /\.(svg|gif)$/,
-        loader: 'file-loader',
-        options: {
-          name: '[path][name].[ext]',
-        },
+        use: ['file-loader'],
       },
       {
-        test: /\.(jpg|png)$/,
+        test: /\.(png|jpg|gif)$/,
         use: {
           loader: 'url-loader',
           options: {
             limit: 25000,
-          },
-          options: {
-            fallback: 'file-loader',
           },
         },
       },
@@ -53,7 +53,10 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: path.resolve('./index.html'),
+      filename: 'index.html',
+      path: path.join(__dirname, './build/'),
+      hash: true,
     }),
-    new webpack.WatchIgnorePlugin([path.join(__dirname, 'node_modules')]),
+    new webpack.HotModuleReplacementPlugin(),
   ],
 };
