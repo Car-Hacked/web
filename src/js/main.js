@@ -2,7 +2,7 @@ import React from 'react';
 import io from 'socket.io-client';
 import $ from 'jquery';
 
-import github from '../images/github.png';
+import github from '../assets/github.png';
 
 class Main extends React.Component {
   constructor(props) {
