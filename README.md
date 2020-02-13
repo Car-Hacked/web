@@ -1,7 +1,7 @@
 # CarHack Web Front-End
 
 A simple front-end for the project
-Currently deployed at: https://car-hacked.netlify.com/
+Currently deployed at: https://park-a-lot.netlify.com/
 
 ## Installation
 
