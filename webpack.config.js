@@ -8,25 +8,19 @@ module.exports = {
     filename: 'bundle.js',
     publicPath: './',
   },
-  devtool: 'inline-source-map',
   module: {
     rules: [
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: ['babel-loader', 'eslint-loader'],
-        include: path.join(__dirname, 'src'),
       },
       {
         test: /\.scss$/,
         use: ['style-loader', 'css-loader', 'sass-loader'],
       },
       {
-        test: /\.(svg|gif)$/,
-        use: ['file-loader'],
-      },
-      {
-        test: /\.(png|jpg|gif)$/,
+        test: /\.(png|svg|jpg|gif)$/,
         use: {
           loader: 'url-loader',
           options: {
@@ -40,8 +34,8 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.resolve('./index.html'),
       filename: 'index.html',
-      path: path.join(__dirname, './build/'),
       hash: true,
+      favicon: path.resolve(__dirname, './src/assets/PAL.png'),
     }),
   ],
 };
