@@ -14,11 +14,11 @@ class Main extends React.Component {
     };
   }
   componentDidMount() {
-    var socket = io('https://park-a-lot.herokuapp.com/');
+    var socket = io('https://carhackedapi-timothyagass.b4a.run/');
     socket.on('updated', (data, other) => {
-      if (data === '5e2cec15c969e7185ab7d04d') {
+      if (data === '63f95e3d12e22127cda94f78') {
         $.get(
-          'https://park-a-lot.herokuapp.com/api/v1/garages/5e2cec15c969e7185ab7d04d',
+          'https://carhackedapi-timothyagass.b4a.run/api/v1/garages/63f95e3d12e22127cda94f78',
           response => {
             this.setState({
               garageName: response.garageName,
@@ -30,7 +30,7 @@ class Main extends React.Component {
       }
     });
     $.get(
-      'https://park-a-lot.herokuapp.com/api/v1/garages/5e2cec15c969e7185ab7d04d',
+      'https://carhackedapi-timothyagass.b4a.run/api/v1/garages/63f95e3d12e22127cda94f78',
       response => {
         if (response instanceof Error) {
           return;
