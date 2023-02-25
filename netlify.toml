@@ -1,0 +1,10 @@
+[[redirects]]
+  from = "/"
+  to = "https://carhackedapi-timothyagass.b4a.run/"
+  status = 200
+  force = true
+  headers = {X-From = "Netlify"}
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Access-Control-Allow-Origin = "*"
