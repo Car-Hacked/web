@@ -1,4 +1,0 @@
-[[headers]]
-  for = "https://carhackedapi-timothyagass.b4a.run/*"
-  [headers.values]
-    Access-Control-Allow-Origin = "*"

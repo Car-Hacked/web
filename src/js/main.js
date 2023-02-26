@@ -14,7 +14,7 @@ class Main extends React.Component {
     };
   }
   componentDidMount() {
-    var socket = io('https://carhackedapi-timothyagass.b4a.run/');
+    var socket = io('https://carhackedapi-timothyagass.b4a.run');
     socket.on('updated', (data, other) => {
       if (data === '63f95e3d12e22127cda94f78') {
         $.get(
