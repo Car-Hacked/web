@@ -15,33 +15,15 @@ class Main extends React.Component {
   }
   componentDidMount() {
     var socket = io('https://carhackedapi-timothyagass.b4a.run');
-    socket.on('updated', (data, other) => {
-      if (data === '63f95e3d12e22127cda94f78') {
-        $.get(
-          'https://carhackedapi-timothyagass.b4a.run/api/v1/garages/63f95e3d12e22127cda94f78',
-          response => {
-            this.setState({
-              garageName: response.garageName,
-              capacity: response.capacity,
-              carsInLot: response.carsInLot,
-            });
-          }
-        );
-      }
-    });
-    $.get(
-      'https://carhackedapi-timothyagass.b4a.run/api/v1/garages/63f95e3d12e22127cda94f78',
-      response => {
-        if (response instanceof Error) {
-          return;
-        }
+    socket.on('updated', (data) => {
+      if (data._id === '63f95e3d12e22127cda94f78') {
         this.setState({
-          garageName: response.garageName,
-          capacity: response.capacity,
-          carsInLot: response.carsInLot,
+          garageName: data.garageName,
+          capacity: data.capacity,
+          carsInLot: data.carsInLot,
         });
       }
-    );
+    });
   }
   render() {
     return (
