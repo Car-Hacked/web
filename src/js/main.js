@@ -16,7 +16,7 @@ class Main extends React.Component {
   componentDidMount() {
     var socket = io('https://carhackedapi-timothyagass.b4a.run');
     socket.on('updated', (data) => {
-      if (data.name === 'Johnson') {
+      if (data.garageName === 'Johnson') {
         this.setState({
           garageName: data.garageName,
           capacity: data.capacity,
