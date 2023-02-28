@@ -24,6 +24,19 @@ class Main extends React.Component {
         });
       }
     });
+    $.get(
+      'https://carhackedapi-timothyagass.b4a.run/api/v1/garages/63f95e3d12e22127cda94f78',
+      response => {
+        if (response instanceof Error) {
+          return;
+        }
+        this.setState({
+          garageName: response.garageName,
+          capacity: response.capacity,
+          carsInLot: response.carsInLot,
+        });
+      }
+    );
   }
   render() {
     return (
