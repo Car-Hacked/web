@@ -1,6 +1,7 @@
 const path = require('path');
 const ErrorOverlayPlugin = require('error-overlay-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 
 module.exports = {
   entry: './src/index.js',
@@ -27,7 +28,7 @@ module.exports = {
         exclude: /node_modules/,
         use: [
           {
-            loader: require.resolve('babel-loader'),
+            loader: 'babel-loader',
             options: {
               // ... other options
               // DO NOT apply the plugin in production mode!
@@ -37,7 +38,7 @@ module.exports = {
         ]
       },
       {
-        test: /\.scss$/,
+        test: /\.(scss|css)$/,
         use: ['style-loader', 'css-loader', 'sass-loader'],
       },
       {
@@ -54,6 +55,7 @@ module.exports = {
       hash: true,
       favicon: path.resolve(__dirname, './src/assets/PAL.png'),
     }),
+    new ReactRefreshWebpackPlugin()
   ],
   mode: 'development'
 };
