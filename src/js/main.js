@@ -29,7 +29,7 @@ const Main = () => {
         });
       }
     });
-    $.get('https://cartracker-api.fly.dev/api/v1/garages/63f95e3d12e22127cda94f78', response => {
+    $.get('https://cartracker-api.fly.dev/api/v1/garages/69de7e28c83642e167425fe0', response => {
         if (response instanceof Error) {
           return;
         }
