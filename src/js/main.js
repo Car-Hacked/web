@@ -19,7 +19,7 @@ const Main = () => {
       }
       setImageSrc(Buffer.from(frame).toString('base64'));
     });
-    var socket2 = io('https://carhackedapi-timothyagass.b4a.run');
+    var socket2 = io('https://catracker-api.fly.dev');
     socket2.on('updated', (data) => {
       if (data.garageName === 'Johnson') {
         setGarage({
@@ -29,7 +29,7 @@ const Main = () => {
         });
       }
     });
-    $.get('https://carhackedapi-timothyagass.b4a.run/api/v1/garages/63f95e3d12e22127cda94f78', response => {
+    $.get('https://catracker-api.fly.dev/api/v1/garages/63f95e3d12e22127cda94f78', response => {
         if (response instanceof Error) {
           return;
         }
