@@ -9,18 +9,10 @@ import github from '../assets/github.png';
 const Main = () => {
   const [garage, setGarage] = useState({ garageName: "Johnson", capacity: 500, carsInLot: 0 });
   const [loaded, setLoaded] = useState(false);
-  const [imageSrc, setImageSrc] = useState("");
 
   useEffect(() => {
-    var socket = io("https://cartracker.fly.dev");
-    socket.on('frame', (frame) => {
-      if(!loaded) {
-        setLoaded(true);
-      }
-      setImageSrc(Buffer.from(frame).toString('base64'));
-    });
-    var socket2 = io('https://cartracker-api.fly.dev');
-    socket2.on('updated', (data) => {
+    var socket = io('https://cartracker-api.fly.dev');
+    socket.on('updated', (data) => {
       if (data.garageName === 'Johnson') {
         setGarage({
           garageName: data.garageName,
@@ -30,31 +22,30 @@ const Main = () => {
       }
     });
     $.get('https://cartracker-api.fly.dev/api/v1/garages/69de7e28c83642e167425fe0', response => {
-        if (response instanceof Error) {
-          return;
-        }
-        setGarage({
-          garageName: response.garageName,
-          capacity: response.capacity,
-          carsInLot: response.carsInLot,
-        });
+      if (response instanceof Error) {
+        return;
+      }
+      setGarage({
+        garageName: response.garageName,
+        capacity: response.capacity,
+        carsInLot: response.carsInLot,
+      });
     });
     window.addEventListener("beforeunload", () => {
       socket.disconnect();
-      socket2.disconnect();
     });
+    setLoaded(true);
     return () => {
       socket.disconnect();
-      socket2.disconnect();
     };
-  },[]);
+  }, []);
 
   const Video = () => {
-    if(!loaded) {
+    if (!loaded) {
       return (<div><h3 style={{ color: 'white', marginBottom: 20 }}>Initializing server...</h3><Spinner className='videoFeed' animation="border" role="status" variant="light" /></div>);
     }
-    return (<div style={{ background: "linear-gradient(0deg,rgba(103, 33, 255, 1) 0%,rgba(160, 69, 255, 1) 100%)", padding: "3px", placeItems: "center", borderRadius: "12px" }}><img className='videoFeed' id="my-img" width={500} height={281} src={'data:image/jpeg;base64,' + imageSrc} style={{ borderRadius: 12 }} /></div>);
-  };  
+    return (<div style={{ background: "linear-gradient(0deg,rgba(103, 33, 255, 1) 0%,rgba(160, 69, 255, 1) 100%)", padding: "3px", placeItems: "center", borderRadius: "12px" }}><img className='videoFeed' id="my-img" width={500} height={281} src={'https://cartracker.fly.dev/video_feed'} style={{ borderRadius: 12 }}></img></div>);
+  };
 
   return (
     <div className="app-background">
@@ -64,7 +55,7 @@ const Main = () => {
           <div className="parking-wrapper">
             <div className="parking-container">
               <div className="parking-app">
-                <h1 className="garage h1-unstyled">{garage.garageName}</h1>
+                <h1 className="garage h1-unstyled">{garage.garageName} Center</h1>
                 <h1 className="pill h1-unstyled">
                   <span className='unstyled-span'>
                     {garage.carsInLot.toString()}/
